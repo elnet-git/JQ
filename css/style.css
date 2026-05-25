@@ -75,17 +75,21 @@ body{
 
   z-index:999999;
 
+  overflow-y:auto;
+
 }
 
 .logo{
 
   display:flex;
 
+  flex-direction:column;
+
   align-items:center;
 
-  gap:5px;
+  gap:10px;
 
-  margin-bottom:30px;
+  margin-bottom:35px;
 
 }
 
@@ -93,11 +97,16 @@ body{
 
   width:150px;
 
+  filter:
+  drop-shadow(
+    0 0 10px rgba(0,174,239,.25)
+  );
+
 }
 
 .sucursal{
 
-  font-size:24px;
+  font-size:22px;
 
   font-weight:800;
 
@@ -105,11 +114,17 @@ body{
 
   color:#00AEEF;
 
+  text-align:center;
+
 }
+
+/* ===================================================== */
+/* ===================== MENU ========================== */
+/* ===================================================== */
 
 .navbar nav{
 
-  width:30%;
+  width:100%;
 
 }
 
@@ -121,38 +136,175 @@ body{
 
   flex-direction:column;
 
-  gap:12px;
+  gap:14px;
+
+}
+
+.navbar nav ul li{
+
+  width:100%;
 
 }
 
 .navbar a{
 
-  display:block;
+  display:flex;
+
+  align-items:center;
 
   width:100%;
 
-  color:rgb(17, 248, 133);
+  color:white;
 
   text-decoration:none;
 
-  padding:5px 20px;
+  padding:14px 18px;
 
-  border-radius:100px;
+  border-radius:16px;
 
-  font-weight:900;
+  font-weight:700;
 
   transition:.3s;
 
   background:
   rgba(255,255,255,.03);
 
+  border:
+  1px solid rgba(255,255,255,.04);
+
+  backdrop-filter:blur(8px);
+
 }
 
 .navbar a:hover{
 
-  background:#007BFF;
+  background:
+  linear-gradient(
+    90deg,
+    #0057B8,
+    #00AEEF
+  );
 
-  transform:translateX(4px);
+  transform:translateX(5px);
+
+  box-shadow:
+  0 0 18px rgba(0,174,239,.35);
+
+}
+
+/* ===================================================== */
+/* ===================== SOCIAL ======================== */
+/* ===================================================== */
+
+.social-sidebar{
+
+  margin-top:35px;
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:14px;
+
+  flex-wrap:wrap;
+
+}
+
+.social-icon{
+
+  position:relative;
+
+  width:58px;
+  height:58px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border-radius:18px;
+
+  background:
+  rgba(255,255,255,.05);
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  transition:.3s;
+
+  box-shadow:
+  0 8px 20px rgba(0,0,0,.25);
+
+}
+
+.social-icon img{
+
+  width:28px;
+  height:28px;
+
+  object-fit:contain;
+
+}
+
+.social-icon:hover{
+
+  transform:
+  translateY(-6px)
+  scale(1.08);
+
+  background:
+  rgba(0,174,239,.18);
+
+  border:
+  1px solid rgba(0,174,239,.5);
+
+  box-shadow:
+  0 0 18px rgba(0,174,239,.35);
+
+}
+
+/* TOOLTIP */
+
+.social-icon::after{
+
+  content:attr(data-name);
+
+  position:absolute;
+
+  bottom:-38px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:#061b33;
+
+  color:white;
+
+  font-size:12px;
+
+  padding:7px 12px;
+
+  border-radius:10px;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.3s;
+
+  white-space:nowrap;
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+}
+
+.social-icon:hover::after{
+
+  opacity:1;
+
+  bottom:-45px;
 
 }
 
@@ -430,66 +582,6 @@ section h2{
 }
 
 /* ===================================================== */
-/* ===================== INTRANET ====================== */
-/* ===================================================== */
-
-.intranet-box{
-
-  max-width:450px;
-
-  margin:auto;
-
-  padding:35px;
-
-}
-
-.intranet-box input{
-
-  width:100%;
-
-  margin-bottom:15px;
-
-  padding:15px;
-
-  border:none;
-
-  border-radius:12px;
-
-  background:#132744;
-
-  color:white;
-
-}
-
-.intranet-box button{
-
-  width:100%;
-
-  padding:15px;
-
-  border:none;
-
-  border-radius:12px;
-
-  background:#0057B8;
-
-  color:white;
-
-  font-size:18px;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-}
-
-.intranet-box button:hover{
-
-  background:#00AEEF;
-
-}
-
-/* ===================================================== */
 /* ===================== FOOTER ======================== */
 /* ===================================================== */
 
@@ -620,6 +712,186 @@ footer{
 
   cursor:pointer;
 
+  transition:.3s;
+
+}
+
+.flecha-btn:hover,
+.cerrar-btn:hover{
+
+  background:#00AEEF;
+
+}
+
+/* ===================================================== */
+/* ================= MODAL INTRANET ==================== */
+/* ===================================================== */
+
+.modal-overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+  rgba(0,0,0,.75);
+
+  backdrop-filter:blur(6px);
+
+  display:none;
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:9999999;
+
+}
+
+.modal-box{
+
+  width:95%;
+  max-width:420px;
+
+  background:
+  linear-gradient(
+    180deg,
+    #081625,
+    #0d1b2f
+  );
+
+  border-radius:24px;
+
+  padding:40px 30px;
+
+  position:relative;
+
+  box-shadow:
+  0 20px 40px rgba(0,0,0,.55);
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  text-align:center;
+
+}
+
+.modal-logo{
+
+  width:120px;
+
+  margin-bottom:15px;
+
+}
+
+.modal-box h2{
+
+  color:#00AEEF;
+
+  margin-bottom:10px;
+
+}
+
+.modal-box p{
+
+  color:#b9d1ea;
+
+  margin-bottom:25px;
+
+}
+
+.modal-box input{
+
+  width:100%;
+
+  margin-bottom:15px;
+
+  padding:15px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:#132744;
+
+  color:white;
+
+  outline:none;
+
+}
+
+.modal-box input:focus{
+
+  border:
+  1px solid #00AEEF;
+
+}
+
+.btn-login{
+
+  width:100%;
+
+  padding:15px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:
+  linear-gradient(
+    90deg,
+    #0057B8,
+    #00AEEF
+  );
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+}
+
+.btn-login:hover{
+
+  transform:translateY(-3px);
+
+}
+
+.cerrar-modal{
+
+  position:absolute;
+
+  top:15px;
+  right:15px;
+
+  width:38px;
+  height:38px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:#132744;
+
+  color:white;
+
+  cursor:pointer;
+
+  font-size:18px;
+
+  transition:.3s;
+
+}
+
+.cerrar-modal:hover{
+
+  background:#ff3d3d;
+
 }
 
 /* ===================================================== */
@@ -671,53 +943,10 @@ footer{
 
   }
 
-}
-/* ===================================================== */
-/* SOCIAL ICONS (FACEBOOK + TIKTOK) */
-/* ===================================================== */
+  .social-sidebar{
 
-.social-sidebar{
+    margin-top:20px;
 
-  margin-top:25px;
+  }
 
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.social-icon{
-
-  width:400px;
-  height:52px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:100%; /* 🔥 círculo perfecto */
-
-  background: rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-
-  transition:.3s;
-
-  box-shadow:0 8px 20px rgba(0,0,0,.25);
-}
-
-.social-icon img{
-
-  width:50px;
-  height:50px;
-  object-fit:contain;
-}
-
-.social-icon:hover{
-
-  transform:translateY(-6px) scale(1.05);
-
-  background: rgba(0,174,239,.18);
-  border:1px solid rgba(0,174,239,.5);
-
-  box-shadow:0 0 18px rgba(0,174,239,.35);
 }
