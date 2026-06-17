@@ -109,6 +109,16 @@
       object-fit:contain;
       background:white;
       padding:20px;
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .card img:hover{
+      transform:scale(1.05);
+    }
+
+    .card img:hover{
+      transform:scale(1.05);
     }
 
     .info{ padding:22px; }
@@ -161,6 +171,37 @@
       .titulo h2{ font-size:34px; }
       .logo h1{ font-size:22px; }
     }
+
+    /* VISOR DE IMAGENES */
+
+#visor-moto{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  z-index:999999;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+}
+
+#visor-moto img{
+  max-width:90%;
+  max-height:90vh;
+  object-fit:contain;
+  animation:zoom .25s ease;
+}
+
+@keyframes zoom{
+  from{
+    transform:scale(.8);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
 
   </style>
 
@@ -356,6 +397,59 @@
   </div>
 
 </section>
+
+<!-- VISOR DE IMAGEN -->
+
+<div id="visor-moto">
+  <img id="visor-moto-img" src="" alt="">
+</div>
+
+<script>
+
+window.addEventListener("DOMContentLoaded",()=>{
+
+  const visorMoto =
+  document.getElementById("visor-moto");
+
+  const visorMotoImg =
+  document.getElementById("visor-moto-img");
+
+  const imagenesMoto =
+  document.querySelectorAll(".card img");
+
+  imagenesMoto.forEach((img)=>{
+
+    img.addEventListener("click",()=>{
+
+      visorMoto.style.display = "flex";
+
+      visorMotoImg.src = img.src;
+
+      visorMotoImg.alt = img.alt;
+
+    });
+
+  });
+
+  visorMoto.addEventListener("click",()=>{
+
+    visorMoto.style.display = "none";
+
+  });
+
+  document.addEventListener("keydown",(e)=>{
+
+    if(e.key === "Escape"){
+
+      visorMoto.style.display = "none";
+
+    }
+
+  });
+
+});
+
+</script>
 
 </body>
 </html>
