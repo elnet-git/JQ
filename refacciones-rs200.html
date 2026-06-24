@@ -6,22 +6,119 @@
 <title>Refacciones RS200</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#07111f;color:white;}
-header{background:#0d1b2f;padding:20px;text-align:center;}
+body{
+  margin:0;
+  font-family:Arial;
+  background:#07111f;
+  color:white;
+}
+
+header{
+  background:#0d1b2f;
+  padding:20px;
+  text-align:center;
+}
+
 h1{color:#00AEEF;margin:0;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;padding:20px;}
-.card{background:#0d1b2f;padding:15px;border-radius:10px;}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+  padding:20px;
+}
+
+.card{
+  background:#0d1b2f;
+  padding:15px;
+  border-radius:10px;
+  border:1px solid #1c2c44;
+}
+
+.card img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:8px;
+  margin-bottom:10px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.card img:hover{
+  transform:scale(1.03);
+}
+
+.codigo{
+  color:#00AEEF;
+  font-weight:bold;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.modal img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:10px;
+}
 </style>
 </head>
 
 <body>
-<header><h1>RS200</h1></header>
+
+<header>
+  <h1>REFACCIONES RS200</h1>
+</header>
 
 <section class="grid">
-<div class="card">Kit arrastre</div>
-<div class="card">Discos clutch</div>
-<div class="card">Pastillas freno</div>
+
+  <div class="card">
+    <img src="images/rs200/refacciones/kit-arrastre.jpg" onclick="openImg(this)">
+    <div class="codigo">DT581062</div>
+    <div>Filtro de aire</div>
+  </div>
+
+  <div class="card">
+    <img src="images/rs200/refacciones/discos-clutch.jpg" onclick="openImg(this)">
+    <div class="codigo">RS200-002</div>
+    <div>Discos clutch</div>
+  </div>
+
+  <div class="card">
+    <img src="images/rs200/refacciones/pastillas-freno.jpg" onclick="openImg(this)">
+    <div class="codigo">RS200-003</div>
+    <div>Pastillas de freno</div>
+  </div>
+
 </section>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeImg()">
+  <img id="modalImg">
+</div>
+
+<script>
+function openImg(img){
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("modalImg").src = img.src;
+}
+
+function closeImg(){
+  document.getElementById("modal").style.display = "none";
+}
+</script>
 
 </body>
 </html>
