@@ -6,22 +6,121 @@
 <title>Refacciones N250 FI</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#07111f;color:white;}
-header{background:#0d1b2f;padding:20px;text-align:center;}
-h1{color:#00AEEF;margin:0;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;padding:20px;}
-.card{background:#0d1b2f;padding:15px;border-radius:10px;}
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#07111f;
+    color:white;
+}
+
+header{
+    background:#0d1b2f;
+    padding:20px;
+    text-align:center;
+}
+
+h1{
+    margin:0;
+    color:#00AEEF;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    padding:20px;
+}
+
+.card{
+    background:#0d1b2f;
+    border:1px solid #1c2c44;
+    border-radius:10px;
+    padding:15px;
+}
+
+.card img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.card img:hover{
+    transform:scale(1.03);
+}
+
+.codigo{
+    color:#00AEEF;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* Visor */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.9);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:10px;
+}
 </style>
 </head>
 
 <body>
-<header><h1>N250 FI</h1></header>
+
+<header>
+    <h1>REFACCIONES N250 FI</h1>
+</header>
 
 <section class="grid">
-<div class="card">Filtro de aire</div>
-<div class="card">Bujía</div>
-<div class="card">Clutch</div>
+
+    <div class="card">
+        <img src="images/n250/refacciones/filtroaceite.jpg" onclick="openImg(this)">
+        <div class="codigo">JG571014</div>
+        <div>Filtro de aceite</div>
+    </div>
+
+    <div class="card">
+        <img src="images/n250/refacciones/bujia.jpg" onclick="openImg(this)">
+        <div class="codigo">N250-002</div>
+        <div>Bujía</div>
+    </div>
+
+    <div class="card">
+        <img src="images/n250/refacciones/clutch.jpg" onclick="openImg(this)">
+        <div class="codigo">N250-003</div>
+        <div>Clutch</div>
+    </div>
+
 </section>
+
+<div class="modal" id="modal" onclick="closeImg()">
+    <img id="modalImg">
+</div>
+
+<script>
+function openImg(img){
+    document.getElementById("modal").style.display="flex";
+    document.getElementById("modalImg").src=img.src;
+}
+
+function closeImg(){
+    document.getElementById("modal").style.display="none";
+}
+</script>
 
 </body>
 </html>
